@@ -83,8 +83,6 @@ video {
 	padding: 0;
 	border: 0;
 	vertical-align: baseline;
-	font-family: "Poppins", sans-serif;
-	font-weight: normal;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -136,4 +134,14 @@ input {
 
 * {
 	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	font-weight: normal;
 }

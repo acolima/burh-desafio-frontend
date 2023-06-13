@@ -1,15 +1,14 @@
 import { IoIosAddCircle as AddRecipe } from "react-icons/io";
-import { AddButton, Container, PageTitle } from "./styles";
 
 function Header() {
 	return (
-		<Container>
-			<PageTitle>Meu Livro de Receitas</PageTitle>
+		<div className="header">
+			<h1>Meu Livro de Receitas</h1>
 
-			<AddButton>
+			<button>
 				<AddRecipe />
-			</AddButton>
-		</Container>
+			</button>
+		</div>
 	);
 }
 

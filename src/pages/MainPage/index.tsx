@@ -1,18 +1,19 @@
 import { Header, Recipe } from "../../components";
-import { Container } from "./styles";
 
 function Main() {
 	return (
-		<Container>
+		<div className="main-page">
 			<Header />
 
-			<Recipe />
-			<Recipe />
-			<Recipe />
-			<Recipe />
-			<Recipe />
-			<Recipe />
-		</Container>
+			<div className="main-page__recipes">
+				<Recipe />
+				<Recipe />
+				<Recipe />
+				<Recipe />
+				<Recipe />
+				<Recipe />
+			</div>
+		</div>
 	);
 }
 

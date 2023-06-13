@@ -1,23 +1,25 @@
 import { IoMdRestaurant as Portions, IoMdTime as Time } from "react-icons/io";
 
-import { Chips, Container, Infos, Title } from "./styles";
-
 function Recipe() {
 	return (
-		<Container>
-			<Title>Bolo de Murango</Title>
+		<div className="recipe">
+			<h2>Bolo de Murango</h2>
 
-			<Infos>
+			<div className="recipe__info">
 				<span>
 					<Time /> 45 minutos
 				</span>
 				<span>
 					<Portions /> 4 a 6 porções
 				</span>
-			</Infos>
+			</div>
 
-			<Chips>Vegano</Chips>
-		</Container>
+			<div className="recipe__tags">
+				<div className="recipe__tags-chip">Vegano</div>
+				<div className="recipe__tags-chip">Vegano</div>
+				<div className="recipe__tags-chip">Vegano</div>
+			</div>
+		</div>
 	);
 }
 

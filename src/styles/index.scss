@@ -1,0 +1,78 @@
+@import "mixin";
+@import "reset";
+@import "theme";
+@import "variables";
+
+#root {
+	background-color: $color-primary-0;
+	color: white;
+
+	font-family: $main-font;
+	font-weight: lighter;
+}
+
+/* MAIN PAGE */
+.main-page {
+	height: 100%;
+	width: 100vw;
+
+	@include flex($direction: column, $gap: 15px);
+
+	padding: 10px 0;
+
+	&__recipes {
+		width: 90%;
+
+		@include flex($direction: column, $gap: 15px);
+	}
+}
+
+/* ======== COMPONENTS ======== */
+
+/* HEADER */
+.header {
+	width: 90%;
+	height: 70px;
+
+	display: flex;
+
+	h1 {
+		font-size: 2em;
+		text-align: left;
+	}
+
+	button {
+		width: 70px;
+
+		font-size: 2.5em;
+		text-align: center;
+	}
+}
+
+/* RECIPE */
+.recipe {
+	background-color: $color-primary-1;
+
+	@include flex($direction: column);
+
+	width: 100%;
+
+	padding: 10px;
+	border-radius: 10px;
+
+	&__info {
+		@include flex($gap: 20px);
+	}
+
+	&__tags {
+		@include flex($wrap: wrap, $justifyContent: center);
+
+		&-chip {
+			background-color: $color-accent-0;
+			color: $color-primary-0;
+
+			padding: 7px;
+			border-radius: 15px;
+		}
+	}
+}
