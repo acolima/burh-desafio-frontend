@@ -128,7 +128,10 @@ table {
 }
 
 button,
-input {
+input,
+textarea,
+select,
+a {
 	all: unset;
 }
 

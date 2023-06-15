@@ -1,3 +1,4 @@
 import Main from "./MainPage";
+import NewRecipe from "./NewRepice";
 
-export { Main };
+export { Main, NewRecipe };

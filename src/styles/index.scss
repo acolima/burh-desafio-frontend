@@ -3,12 +3,11 @@
 @import "theme";
 @import "variables";
 
-#root {
+body {
 	background-color: $color-primary-0;
 	color: white;
 
 	font-family: $main-font;
-	font-weight: lighter;
 }
 
 /* MAIN PAGE */
@@ -24,6 +23,89 @@
 		width: 90%;
 
 		@include flex($direction: column, $gap: 15px);
+	}
+}
+
+/* NEW RECIPE PAGE*/
+.new-recipe {
+	width: 100%;
+
+	margin-top: 25px;
+
+	@include flex($direction: column, $gap: 50px);
+
+	h3 {
+		text-align: center;
+	}
+
+	&__header {
+		@include flex();
+
+		padding: 0 5px;
+		width: 100%;
+
+		.title {
+			width: 50%;
+
+			@include flex($justifyContent: center);
+
+			textarea {
+				text-align: left;
+				font-size: 20px;
+				word-break: break-word;
+			}
+		}
+	}
+
+	&__info {
+		@include flex($direction: column);
+
+		text-align: center;
+		width: 50%;
+
+		select {
+			font-size: 14px;
+		}
+
+		option {
+			background-color: $color-primary-0;
+
+			font-size: 12px;
+		}
+		input {
+			width: 100%;
+		}
+	}
+
+	&__ingredients,
+	&__instructions {
+		width: 90%;
+
+		button {
+			text-align: center;
+			width: 100%;
+
+			padding-top: 10px;
+		}
+
+		.ingredient,
+		.instruction {
+			@include flex();
+		}
+	}
+
+	&__buttons {
+		@include flex($direction: column);
+
+		width: 100%;
+
+		.save {
+			width: 30%;
+			text-align: center;
+			background-color: $color-accent-0;
+			padding: 10px;
+			border-radius: 20px;
+		}
 	}
 }
 
