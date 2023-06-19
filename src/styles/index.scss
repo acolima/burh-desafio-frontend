@@ -94,6 +94,63 @@ body {
 		}
 	}
 
+	.switch_button {
+		width: 100%;
+
+		font-size: 14px;
+
+		@include flex($justifyContent: center);
+
+		.switch {
+			position: relative;
+
+			width: 40px;
+			height: 22px;
+
+			.slider {
+				position: absolute;
+				inset: 0;
+
+				cursor: pointer;
+
+				background-color: #ccc;
+
+				border-radius: 34px;
+
+				-webkit-transition: 0.4s;
+				transition: 0.4s;
+
+				&:before {
+					content: "";
+
+					height: 14px;
+					width: 14px;
+
+					position: absolute;
+					left: 4px;
+					bottom: 4px;
+
+					background-color: white;
+
+					border-radius: 50%;
+
+					-webkit-transition: 0.4s;
+					transition: 0.4s;
+				}
+			}
+
+			input:checked + .slider {
+				background-color: $color-accent-0;
+			}
+
+			input:checked + .slider:before {
+				-webkit-transform: translateX(18px);
+				-ms-transform: translateX(18px);
+				transform: translateX(18px);
+			}
+		}
+	}
+
 	&__buttons {
 		@include flex($direction: column);
 
@@ -101,8 +158,11 @@ body {
 
 		.save {
 			width: 30%;
+
 			text-align: center;
+
 			background-color: $color-accent-0;
+
 			padding: 10px;
 			border-radius: 20px;
 		}

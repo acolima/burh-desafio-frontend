@@ -1,5 +1,7 @@
 import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { api } from "../../services/api";
+import { alert } from "../../utils/toastifyAlerts";
 
 function NewRecipe() {
 	const { register, control, handleSubmit } = useForm({
@@ -7,6 +9,7 @@ function NewRecipe() {
 			title: "",
 			time: 30,
 			portions: 2,
+			vegan: false,
 			ingredients: [{ ingredient: "" }],
 			instructions: [{ step: "" }],
 		},
@@ -29,7 +32,17 @@ function NewRecipe() {
 		name: "instructions",
 	});
 
-	const onSubmit = (data: any) => console.log("data", data);
+	const navigate = useNavigate();
+
+	async function onSubmit(data: any) {
+		try {
+			await api.addNewRecipe(data);
+			alert.success("Receita criada com sucesso!");
+			navigate("/");
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="new-recipe">
@@ -54,7 +67,6 @@ function NewRecipe() {
 							<option value="120">Mais de 2h</option>
 						</select>
 					</div>
-
 					<div>
 						<label htmlFor="portions">Rendimento</label>
 						<select {...register("portions", { required: true })}>
@@ -62,6 +74,14 @@ function NewRecipe() {
 							<option value="5">De 5 a 10 porções</option>
 							<option value="10">Mais de 10 porções</option>
 						</select>
+					</div>
+
+					<div className="switch_button">
+						<label className="switch">
+							<input type="checkbox" {...register("vegan")} />
+							<span className="slider"></span>
+						</label>
+						<span>Vegano</span>
 					</div>
 				</div>
 			</div>
