@@ -7,8 +7,8 @@ function NewRecipe() {
 	const { register, control, handleSubmit } = useForm({
 		defaultValues: {
 			title: "",
-			time: 30,
-			portions: 2,
+			time: "Até 30m",
+			portions: "De 2 a 4 porções",
 			vegan: false,
 			ingredients: [{ ingredient: "" }],
 			instructions: [{ step: "" }],
@@ -52,7 +52,7 @@ function NewRecipe() {
 						placeholder="Nome da receita"
 						rows={3}
 						cols={50}
-						maxLength={40}
+						maxLength={50}
 						{...register("title", { required: true })}
 					/>
 				</div>
@@ -61,18 +61,18 @@ function NewRecipe() {
 					<div>
 						<label htmlFor="time">Tempo de preparo</label>
 						<select {...register("time", { required: true })}>
-							<option value="30">Até 30m</option>
-							<option value="60">De 30m a 1h</option>
-							<option value="90">De 1h a 1h30m</option>
-							<option value="120">Mais de 2h</option>
+							<option value="Até 30m">Até 30m</option>
+							<option value="De 30m a 1h">De 30m a 1h</option>
+							<option value="De 1h a 1h30m">De 1h a 1h30m</option>
+							<option value="Mais de 2h">Mais de 2h</option>
 						</select>
 					</div>
 					<div>
 						<label htmlFor="portions">Rendimento</label>
 						<select {...register("portions", { required: true })}>
-							<option value="2">De 2 a 4 porções</option>
-							<option value="5">De 5 a 10 porções</option>
-							<option value="10">Mais de 10 porções</option>
+							<option value="De 2 a 4 porções">De 2 a 4 porções</option>
+							<option value="De 5 a 10 porções">De 5 a 10 porções</option>
+							<option value="Mais de 10 porções">Mais de 10 porções</option>
 						</select>
 					</div>
 

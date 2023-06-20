@@ -1,26 +1,12 @@
 import axios from "axios";
 import dayjs from "dayjs";
-
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-
-type Recipe = {
-	title: string;
-	time: number;
-	portions: number;
-	ingredients: {
-		ingredient: string;
-	}[];
-	instructions: {
-		instruction: string;
-	}[];
-	addedOn: dayjs.Dayjs;
-};
+import { IRecipe } from "../utils/models";
 
 const baseAPI = axios.create({
-	baseURL: BASE_URL,
+	baseURL: "https://crudcrud.com/api/95b718712eec4a2ab581e50858de7c43",
 });
 
-function addNewRecipe(newRecipe: Recipe) {
+function addNewRecipe(newRecipe: IRecipe) {
 	const date = dayjs();
 
 	newRecipe = { ...newRecipe, addedOn: date };
@@ -28,6 +14,11 @@ function addNewRecipe(newRecipe: Recipe) {
 	return baseAPI.post("/recipes", newRecipe);
 }
 
+async function getRecipes() {
+	return baseAPI.get("/recipes");
+}
+
 export const api = {
 	addNewRecipe,
+	getRecipes,
 };

@@ -202,19 +202,25 @@ body {
 	padding: 10px;
 	border-radius: 10px;
 
+	text-align: center;
+
 	&__info {
-		@include flex($gap: 20px);
+		width: 100%;
+
+		@include flex($justifyContent: center);
+
+		div {
+			@include flex($gap: 5px);
+		}
 	}
 
-	&__tags {
-		@include flex($wrap: wrap, $justifyContent: center);
+	&__chip {
+		@include flex($gap: 5px);
 
-		&-chip {
-			background-color: $color-accent-0;
-			color: $color-primary-0;
+		background-color: $color-accent-0;
+		color: $color-primary-0;
 
-			padding: 7px;
-			border-radius: 15px;
-		}
+		padding: 7px;
+		border-radius: 15px;
 	}
 }
