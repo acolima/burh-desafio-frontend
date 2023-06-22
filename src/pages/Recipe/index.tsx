@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/api";
 import { IRecipe } from "../../utils/models";
 
@@ -14,6 +14,9 @@ import { alert } from "../../utils/toastifyAlerts";
 function Recipe() {
 	const { id } = useParams();
 	const [recipe, setRecipe] = useState<IRecipe>();
+	const [showModal, setShowModal] = useState(false);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		getRecipe();
@@ -23,6 +26,16 @@ function Recipe() {
 		try {
 			const { data } = await api.getRecipe(id!);
 			setRecipe(data);
+		} catch (error: any) {
+			alert.error(error.message);
+		}
+	}
+
+	async function deleteRecipe() {
+		try {
+			await api.deleteRecipe(id!);
+			alert.success("Receita apagada");
+			navigate("/");
 		} catch (error: any) {
 			alert.error(error.message);
 		}
@@ -69,12 +82,42 @@ function Recipe() {
 				</ol>
 			</div>
 
+			{showModal && (
+				<Modal setShowModal={setShowModal} deleteRecipe={deleteRecipe} />
+			)}
+
 			<div className="recipe__buttons">
-				<button>Editar</button>
-				<button>Apagar</button>
+				<button
+					onClick={() => navigate(`/recipe/${id}/edit`, { state: recipe })}
+				>
+					Editar
+				</button>
+				<button onClick={() => setShowModal(true)}>Apagar</button>
 			</div>
 		</div>
 	);
 }
 
 export default Recipe;
+
+interface ModalProps {
+	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+	deleteRecipe: () => void;
+}
+
+function Modal({ deleteRecipe, setShowModal }: ModalProps) {
+	return (
+		<div className="modal">
+			<h2>Deseja apagar a receita?</h2>
+
+			<div className="modal__buttons">
+				<button className="yes" onClick={() => deleteRecipe()}>
+					Sim
+				</button>
+				<button className="no" onClick={() => setShowModal(false)}>
+					Cancelar
+				</button>
+			</div>
+		</div>
+	);
+}

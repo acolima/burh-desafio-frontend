@@ -13,6 +13,7 @@ function App() {
 					<Route path="/" element={<Main />} />
 					<Route path="/new" element={<NewRecipe />} />
 					<Route path="/recipe/:id" element={<Recipe />} />
+					<Route path="/recipe/:id/edit" element={<NewRecipe />} />
 				</Routes>
 			</BrowserRouter>
 		</>

@@ -291,3 +291,36 @@ body {
 		border-radius: 15px;
 	}
 }
+
+/* MODAL */
+.modal {
+	background-color: white;
+	color: $color-primary-0;
+
+	width: 80%;
+
+	padding: 15px;
+	border-radius: 20px;
+
+	position: fixed;
+	bottom: 15px;
+
+	text-align: center;
+	line-height: 1.8em;
+
+	&__buttons {
+		@include flex($justifyContent: center);
+
+		button {
+			width: 30%;
+		}
+
+		.yes {
+			background-color: $color-accent-0;
+			color: $color-primary-0;
+
+			padding: 7px;
+			border-radius: 20px;
+		}
+	}
+}

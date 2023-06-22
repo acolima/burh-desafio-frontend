@@ -1,17 +1,19 @@
 import { Controller, useFieldArray, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import { alert } from "../../utils/toastifyAlerts";
 
 function NewRecipe() {
+	const { state: recipe } = useLocation();
+
 	const { register, control, handleSubmit } = useForm({
 		defaultValues: {
-			title: "",
-			time: "Até 30m",
-			portions: "De 2 a 4 porções",
-			vegan: false,
-			ingredients: [{ name: "" }],
-			instructions: [{ step: "" }],
+			title: recipe?.title || "",
+			time: recipe?.time || "Até 30m",
+			portions: recipe?.portions || "De 2 a 4 porções",
+			vegan: recipe?.vegan || false,
+			ingredients: recipe?.ingredients || [{ name: "" }],
+			instructions: recipe?.instructions || [{ step: "" }],
 		},
 	});
 	const {
@@ -36,8 +38,10 @@ function NewRecipe() {
 
 	async function onSubmit(data: any) {
 		try {
-			await api.addNewRecipe(data);
-			alert.success("Receita criada com sucesso!");
+			if (recipe) await api.editRecipe(data, recipe._id);
+			else await api.addNewRecipe(data);
+
+			alert.success("Receita salva!");
 			navigate("/");
 		} catch (error: any) {
 			alert.error(error.message);
