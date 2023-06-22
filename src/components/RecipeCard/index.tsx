@@ -4,20 +4,24 @@ import {
 	IoMdTime as Time,
 } from "react-icons/io";
 import { IRecipe } from "../../utils/models";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
 	recipe: IRecipe;
 }
 
 function RecipeCard({ recipe }: Props) {
+	const navigate = useNavigate();
 	return (
-		<div className="recipe">
+		<div
+			className="recipe-card"
+			onClick={() => navigate(`/recipe/${recipe._id}`)}
+		>
 			<h2>{recipe.title}</h2>
 
-			<div className="recipe__info">
+			<div className="recipe-card__info">
 				<div>
-					<Time />
-					<span>{recipe.time}</span>
+					<Time /> {recipe.time}
 				</div>
 				<div>
 					<Portions /> {recipe.portions}
@@ -25,7 +29,7 @@ function RecipeCard({ recipe }: Props) {
 			</div>
 
 			{recipe.vegan && (
-				<div className="recipe__chip">
+				<div className="recipe-card__chip">
 					<IoIosLeaf />
 					Vegano
 				</div>

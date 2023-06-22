@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Header, RecipeCard } from "../../components";
-import { IRecipe, api } from "../../services/api";
+import { api } from "../../services/api";
+import { IRecipe } from "../../utils/models";
+import { alert } from "../../utils/toastifyAlerts";
 
 function Main() {
 	const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -13,8 +15,8 @@ function Main() {
 		try {
 			const { data } = await api.getRecipes();
 			setRecipes(data);
-		} catch (error) {
-			console.error(error);
+		} catch (error: any) {
+			alert.error(error.message);
 		}
 	}
 

@@ -10,7 +10,7 @@ function NewRecipe() {
 			time: "Até 30m",
 			portions: "De 2 a 4 porções",
 			vegan: false,
-			ingredients: [{ ingredient: "" }],
+			ingredients: [{ name: "" }],
 			instructions: [{ step: "" }],
 		},
 	});
@@ -39,8 +39,8 @@ function NewRecipe() {
 			await api.addNewRecipe(data);
 			alert.success("Receita criada com sucesso!");
 			navigate("/");
-		} catch (error) {
-			console.log(error);
+		} catch (error: any) {
+			alert.error(error.message);
 		}
 	}
 
@@ -94,7 +94,7 @@ function NewRecipe() {
 							render={({ field }) => (
 								<input {...field} placeholder={"Ingrediente"} required />
 							)}
-							name={`ingredients.${index}.ingredient`}
+							name={`ingredients.${index}.name`}
 							control={control}
 						/>
 						<button onClick={() => removeIngredient(index)}>x</button>
@@ -104,7 +104,7 @@ function NewRecipe() {
 				<button
 					type="button"
 					onClick={() => {
-						appendIngredient({ ingredient: "" });
+						appendIngredient({ name: "" });
 					}}
 				>
 					Adicionar ingrediente

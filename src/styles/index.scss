@@ -169,6 +169,73 @@ body {
 	}
 }
 
+/* RECIPE PAGE */
+.recipe {
+	@include flex($direction: column, $gap: 25px);
+
+	h2 {
+		text-align: center;
+		margin-bottom: 15px;
+	}
+
+	&__header {
+		padding: 10px;
+
+		&-title {
+			font-size: 2em;
+			line-height: 1.2em;
+		}
+
+		&-info {
+			@include flex($direction: column, $gap: 5px);
+
+			div {
+				@include flex();
+			}
+
+			.chip {
+				@include flex($gap: 5px);
+
+				background-color: $color-accent-0;
+				color: $color-primary-0;
+
+				padding: 7px;
+				border-radius: 15px;
+				margin-bottom: 10px;
+			}
+		}
+	}
+
+	&__ingredients,
+	&__instructions {
+		width: 80%;
+
+		line-height: 1.5em;
+		text-align: justify;
+		font-size: 1.1em;
+	}
+
+	&__buttons {
+		width: 100%;
+
+		margin-bottom: 15px;
+
+		@include flex($justifyContent: center);
+
+		button {
+			width: 30%;
+
+			background-color: $color-accent-0;
+			color: $color-primary-0;
+
+			text-align: center;
+
+			padding: 7px;
+			border-radius: 15px;
+		}
+	}
+}
+
 /* ======== COMPONENTS ======== */
 
 /* HEADER */
@@ -191,8 +258,8 @@ body {
 	}
 }
 
-/* RECIPE */
-.recipe {
+/* RECIPE CARD */
+.recipe-card {
 	background-color: $color-primary-1;
 
 	@include flex($direction: column);

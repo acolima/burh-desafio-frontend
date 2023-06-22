@@ -7,10 +7,10 @@ export interface IRecipe {
 	portions: string;
 	vegan: boolean;
 	ingredients: {
-		ingredient: string;
+		name: string;
 	}[];
 	instructions: {
-		instruction: string;
+		step: string;
 	}[];
 	addedOn: dayjs.Dayjs;
 }
