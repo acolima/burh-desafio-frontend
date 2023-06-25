@@ -11,12 +11,14 @@ import {
 } from "react-icons/io";
 import dayjs from "dayjs";
 import { alert } from "../../utils/toastifyAlerts";
-import { Modal } from "../../components";
+import { Loader, Modal } from "../../components";
 
 function Recipe() {
 	const { id } = useParams();
 	const [recipe, setRecipe] = useState<IRecipe>();
+
 	const [showModal, setShowModal] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -25,12 +27,16 @@ function Recipe() {
 	}, []);
 
 	async function getRecipe() {
+		setLoading(true);
+
 		try {
 			const { data } = await api.getRecipe(id!);
 			setRecipe(data);
 		} catch (error: any) {
 			alert.error(error.message);
 		}
+
+		setLoading(false);
 	}
 
 	async function deleteRecipe() {
@@ -41,6 +47,10 @@ function Recipe() {
 		} catch (error: any) {
 			alert.error(error.message);
 		}
+	}
+
+	if (loading) {
+		return <Loader page="recipe" />;
 	}
 
 	return (

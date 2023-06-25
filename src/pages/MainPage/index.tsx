@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RecipeCard } from "../../components";
+import { Loader, RecipeCard } from "../../components";
 import { api } from "../../services/api";
 import { IRecipe } from "../../utils/models";
 import { alert } from "../../utils/toastifyAlerts";
@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 function Main() {
 	const [recipes, setRecipes] = useState<IRecipe[]>([]);
 
+	const [loading, setLoading] = useState(false);
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -15,12 +17,16 @@ function Main() {
 	}, []);
 
 	async function getRecipes() {
+		setLoading(true);
+
 		try {
 			const { data } = await api.getRecipes();
 			setRecipes(data);
 		} catch (error: any) {
 			alert.error(error.message);
 		}
+
+		setLoading(false);
 	}
 
 	return (
@@ -30,6 +36,12 @@ function Main() {
 			</div>
 
 			<div className="main-page__recipes">
+				{loading && <Loader page="main" />}
+
+				{recipes.length === 0 && !loading && (
+					<h2 className="no-recipes">Você ainda não tem receitas salvas</h2>
+				)}
+
 				{recipes.map((recipe) => (
 					<RecipeCard recipe={recipe} key={recipe._id} />
 				))}
