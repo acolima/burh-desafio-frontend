@@ -125,7 +125,6 @@ table {
 button,
 input,
 textarea,
-select,
 a {
 	all: unset;
 }
@@ -142,4 +141,8 @@ h5,
 h6,
 p {
 	font-weight: normal;
+}
+
+button {
+	cursor: pointer;
 }

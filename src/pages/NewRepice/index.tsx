@@ -54,7 +54,7 @@ function NewRecipe() {
 				<div className="title">
 					<textarea
 						placeholder="Nome da receita"
-						rows={3}
+						rows={4}
 						cols={50}
 						maxLength={50}
 						{...register("title", { required: true })}
@@ -107,6 +107,7 @@ function NewRecipe() {
 
 				<button
 					type="button"
+					className="add"
 					onClick={() => {
 						appendIngredient({ name: "" });
 					}}
@@ -129,8 +130,10 @@ function NewRecipe() {
 						<button onClick={() => removeStep(index)}>x</button>
 					</div>
 				))}
+
 				<button
 					type="button"
+					className="add"
 					onClick={() => {
 						appendStep({ step: "" });
 					}}
@@ -144,7 +147,9 @@ function NewRecipe() {
 					Salvar
 				</button>
 
-				<Link to="/">Voltar</Link>
+				<Link to="/" className="back">
+					Voltar
+				</Link>
 			</div>
 		</form>
 	);

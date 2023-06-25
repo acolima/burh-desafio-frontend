@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Modal from "./Modal";
 import RecipeCard from "./RecipeCard";
 
-export { Header, RecipeCard };
+export { Modal, RecipeCard };

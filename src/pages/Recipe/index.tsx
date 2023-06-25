@@ -4,12 +4,14 @@ import { api } from "../../services/api";
 import { IRecipe } from "../../utils/models";
 
 import {
+	IoIosArrowRoundBack,
 	IoIosLeaf,
 	IoMdRestaurant as Portions,
 	IoMdTime as Time,
 } from "react-icons/io";
 import dayjs from "dayjs";
 import { alert } from "../../utils/toastifyAlerts";
+import { Modal } from "../../components";
 
 function Recipe() {
 	const { id } = useParams();
@@ -44,6 +46,13 @@ function Recipe() {
 	return (
 		<div className="recipe">
 			<div className="recipe__header">
+				<button
+					className="recipe__header-back-button"
+					onClick={() => navigate("/")}
+				>
+					<IoIosArrowRoundBack />
+				</button>
+
 				<h2 className="recipe__header-title">{recipe?.title}</h2>
 
 				<div className="recipe__header-info">
@@ -99,25 +108,3 @@ function Recipe() {
 }
 
 export default Recipe;
-
-interface ModalProps {
-	setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-	deleteRecipe: () => void;
-}
-
-function Modal({ deleteRecipe, setShowModal }: ModalProps) {
-	return (
-		<div className="modal">
-			<h2>Deseja apagar a receita?</h2>
-
-			<div className="modal__buttons">
-				<button className="yes" onClick={() => deleteRecipe()}>
-					Sim
-				</button>
-				<button className="no" onClick={() => setShowModal(false)}>
-					Cancelar
-				</button>
-			</div>
-		</div>
-	);
-}

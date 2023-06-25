@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Header, RecipeCard } from "../../components";
+import { RecipeCard } from "../../components";
 import { api } from "../../services/api";
 import { IRecipe } from "../../utils/models";
 import { alert } from "../../utils/toastifyAlerts";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
 	const [recipes, setRecipes] = useState<IRecipe[]>([]);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		getRecipes();
@@ -22,12 +25,18 @@ function Main() {
 
 	return (
 		<div className="main-page">
-			<Header />
+			<div className="main-page__header">
+				<h1>Meu Livro de Receitas</h1>
+			</div>
 
 			<div className="main-page__recipes">
 				{recipes.map((recipe) => (
 					<RecipeCard recipe={recipe} key={recipe._id} />
 				))}
+			</div>
+
+			<div className="main-page__new-recipe">
+				<button onClick={() => navigate("/new")}>Adicionar receita</button>
 			</div>
 		</div>
 	);

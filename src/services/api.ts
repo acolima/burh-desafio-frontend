@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { IRecipe } from "../utils/models";
 
 const baseAPI = axios.create({
-	baseURL: "https://crudcrud.com/api/d2702def5eda4dcca1b0fbbd877f49af",
+	baseURL: "https://crudcrud.com/api/40d01a3bd1b34315ba02709b0cc46b1d",
 });
 
 function addNewRecipe(newRecipe: IRecipe) {
