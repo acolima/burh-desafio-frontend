@@ -61,20 +61,18 @@ npm i
 npm run dev
 ```
 
-5. Por fim, acesse http://localhost:5173 no seu navegador (o número da porta pode variar)
-
-Obs. O endpoint disponível em <a href="https://crudcrud.com/" target="_blank">crudcrud</a> pode expirar após um tempo ou atingir o limite de requisições. Caso isso ocorra, um novo endpoint deve ser adicionado em `/src/services/api.ts`
+5. O endpoint utilizado para fazer as requisições é encontrado em <a href="https://crudcrud.com/" target="_blank">crudcrud</a>. Crie um arquivo chamado `.env` com a mesma estrutura encontrada em `.env.example` e adicione o endpoint
 
 ```
-const baseAPI = axios.create({
-	baseURL: novo endpoint aqui,
-});
+VITE_BASE_URL=""
 ```
+
+6. Por fim, acesse http://localhost:5173 no seu navegador (o número da porta pode variar)
 
 ## Autora
 
 <p>
-  <a href='https://www.burh.com.br/carolineoliveira153'>Perfil Burh</a>
+  <a href='https://www.burh.com.br/carolineoliveira153' target="_blank">Perfil Burh</a>
 </p>
 
 <img src='https://avatars.githubusercontent.com/acolima' width='150px'/>
